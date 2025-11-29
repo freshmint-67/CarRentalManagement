@@ -6,4 +6,6 @@ namespace CarRentalManagement.Data
     public class CarRentalManagementUser : IdentityUser
     {
     }
+
+     
 }
