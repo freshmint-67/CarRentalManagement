@@ -1,4 +1,5 @@
 ﻿@page "/bookings/create"
+@using CarRentalManagement.Data
 @using Microsoft.EntityFrameworkCore
 @using CarRentalManagement.Components.Domain
 @inject IDbContextFactory<CarRentalManagement.Data.CarRentalManagementContext> DbFactory
@@ -67,6 +68,22 @@
 @code {
     [SupplyParameterFromForm]
     private Booking Booking { get; set; } = new();
+
+    //Declare and initialize CarRentalManagementContext and IList
+    private CarRentalManagementContext context = default!;
+    private IList<Make> Makes;
+    private IList<Model> Models;
+    private IList<Colour> Colours;
+
+
+    //OnInitialized method to get all Makes, Models and Colours
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+        Makes = context.Make.ToList();
+        Models = context.Model.ToList();
+        Colours = context.Colour.ToList();
+    }
 
     // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
     private async Task AddBooking()

@@ -4,6 +4,9 @@
 @inject IDbContextFactory<CarRentalManagement.Data.CarRentalManagementContext> DbFactory
 @inject NavigationManager NavigationManager
 
+@attribute [Authorize(Roles = "Administrator")]
+
+
 <PageTitle>Edit</PageTitle>
 
 <h1>Edit</h1>
